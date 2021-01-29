@@ -1,0 +1,62 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 10%;
+    justify-content: space-between;
+    align-content: flex-end;
+
+}
+
+.item {
+    order: 4;
+    border-radius: 1px;
+    border: solid 1px black;
+    width: 33%;
+
+
+}
+img{
+    max-width: 100%;
+}
+
+.new-item{
+    height: 20%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+
+
+.create-product{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+h1{
+    margin-left: 10%;
+}
+
+.add-item {
+    margin-top: 10px;
+    text-align: center;
+    padding: 10px;
+}
+
+.edit-btn{
+    margin-left: 40%;
+}
+
+hr{
+    border: 1px solid black;
+}
+
+.profile-head{
+    margin-right: 10%;
+    text-align: center;
+}
+
+.div-item{
+    padding-bottom: 5px;
+}

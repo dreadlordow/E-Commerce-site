@@ -1,0 +1,38 @@
+.cart-container{
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-item{
+    padding: 10px;
+    max-height: 30%;
+    max-width: 50%;
+    border-radius: 1px ;
+    border: 1px solid black;
+}
+
+.name{
+
+}
+.name-div{
+
+}
+img{
+    height: 200px;
+    max-width: 40%;
+
+}
+
+.denied{
+    color: red ;
+    text-align: center;
+    margin-top:5%;
+}
+
+.total{
+    width: 33%;
+    position:relative;
+    margin-left: 80%;
+    padding-top: 10px;
+}

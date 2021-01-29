@@ -1,0 +1,36 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% block product_styles %}
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+{% endblock %}
+
+
+{% block content %}
+     <div class="total">
+            <h1>Total</h1>
+        </div>
+    {% if user.pk == cart_pk %}
+        <div class="cart-container">
+            {% for product in products %}
+                <div class="cart-item">
+                    <img class='cart-image' src="{{ product.image_url }}">
+                    <div class="name-div">
+                        <p class="name">{{ product.product_name }}</p>
+                    </div>
+                    <form method="get" action="{% url 'remove_from_cart' product.pk %}">
+                        {% csrf_token %}
+                        <div>
+                            <button class="btn btn-danger" type="submit" name="delete" value="{{ cart_pk }}">Delete from
+                                cart
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+
+    {% else %}
+        <h1 class="denied">Access denied</h1>
+    {% endif %}
+
+{% endblock %}

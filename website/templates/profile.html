@@ -1,0 +1,15 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block product_styles %} <link rel="stylesheet" href="{% static 'css/products.css' %}"> {% endblock %}
+
+{% block content %}
+    <div>
+    <h1 class="display-1 profile-head">
+        {{ owner.username }} 's products
+    </h1>
+    <hr>
+</div>
+{% include 'partials/products.html' %}
+
+{% endblock %}

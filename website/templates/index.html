@@ -1,0 +1,15 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% block product_styles %}
+    <link rel="stylesheet" href="{% static 'css/products.css' %}"> {% endblock %}
+{% block content %}
+        {% if user.is_authenticated %}
+        <div class="new-item ">
+            <a href="{% url 'create' user.pk %}" class="btn btn-primary add">Add new item</a>
+
+        </div>
+    {% endif %}
+
+{% include 'partials/products.html' %}
+
+{% endblock %}
