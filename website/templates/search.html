@@ -1,0 +1,24 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% block product_styles %}
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}"> {% endblock %}
+{% block content %}
+    <h1>Results containing {{ query }}</h1>
+
+    <div class="cart-container">
+        {% for match in matched %}
+            <div class="cart-item">
+
+                <img src="{{ match.image_url }}">
+                <p class="div-item">
+                    <a href="{% url 'product' match.pk %}">
+                        {{ match.product_name }}
+                    </a>
+                </p>
+                <p class="div-item">{{ match.price }}</p>
+                {% include 'partials/add_to_cart.html' %}
+
+            </div>
+        {% endfor %}
+
+{% endblock %}

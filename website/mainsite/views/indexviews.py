@@ -1,12 +1,15 @@
 from django.shortcuts import render
 
 from mainsite.models import Product
+from mainsite.views.categoryfn import category_fn
 
 
 def index(request):
     products = Product.objects.all()
+    categories = category_fn()
     context = {
-        'products': products
+        'products': products,
+        'categories': categories,
     }
     return render(request, 'index.html', context)
 

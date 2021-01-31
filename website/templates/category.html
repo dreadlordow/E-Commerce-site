@@ -1,0 +1,29 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% block product_styles %}
+    <link rel="stylesheet" href="{% static 'css/category.css' %}">
+{% endblock %}
+{% block content %}
+    {% if products %}
+    <h3 class="heading display-3"> {{ len }} products found in category '{{ category }}'</h3>
+    <div class="parent">
+        {% for product in products %}
+            <div class="child">
+                <div class="img-name-price">
+                    <img src="{{ product.image_url }}">
+                    <h5>{{ product.product_name }}</h5>
+                    <h5>{{ product.price }}</h5>
+                </div>
+                <div class="">
+                    <p class="description">{{ product.description }}</p>
+                    {% include 'partials/add_to_cart.html' %}
+
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <h1 class="heading display-1">No products found</h1>
+    {% endif %}
+
+{% endblock %}

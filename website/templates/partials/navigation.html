@@ -13,6 +13,13 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
                 </li>
+            <li class=" dropdown">
+                        <a class=" nav-link active" aria-current="page" href="">Categories</a>
+                    <div class="dropdown-content">
+                        {% for category in categories %}
+                        <a href="{% url 'category_view' category %}">{{ category}}</a>
+                         {% endfor %}
+                    </div>
                 {% if not user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Login</a>
@@ -21,6 +28,8 @@
                         <a class="nav-link active" aria-current="page" href="{% url 'register' %}">Register</a>
                     </li>
                 {% else %}
+
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'profile' user.pk %}">My profile</a>
                     </li>
@@ -35,8 +44,8 @@
 
             </ul>
 
-            <form class=" nav-link active d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form class=" nav-link active d-flex" method="get" action="{% url 'search' %}">
+                <input name="q" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>

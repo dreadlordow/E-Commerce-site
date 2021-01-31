@@ -10,13 +10,15 @@
     max-width: 50%;
     border-radius: 1px ;
     border: 1px solid black;
+
 }
 
 .name{
 
 }
 .name-div{
-
+    padding-top: 10px;
+    padding-left: 10px;
 }
 img{
     height: 200px;
@@ -33,6 +35,12 @@ img{
 .total{
     width: 33%;
     position:relative;
-    margin-left: 80%;
+    margin-left: 60%;
+    margin-right: 10%;
+    padding-right: 10px;
     padding-top: 10px;
+}
+
+.empty-cart{
+    text-align: center;
 }

@@ -2,13 +2,16 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
 from mainsite.forms import ProductForm
+from mainsite.views.categoryfn import category_fn
 
 
 def create_product(request, pk):
+    categories = category_fn()
     if request.method == 'GET':
         form = ProductForm()
         context = {
-            'form': form
+            'form': form,
+            'categories': categories,
         }
         return render(request, 'create_product.html', context)
     else:
@@ -23,6 +26,7 @@ def create_product(request, pk):
 
         form = ProductForm()
         context = {
-            'form': form
+            'form': form,
+            'categories':categories,
         }
         return render(request, 'create_product.html', context)
