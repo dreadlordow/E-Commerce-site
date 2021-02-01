@@ -19,7 +19,27 @@ class Product(models.Model):
     image_url = models.URLField(blank=False)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
+    def __str__(self):
+        return f'{self.product_name} - {self.price} - listed by: {self.owner}'
+
 
 class Cart(models.Model):
     user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
     products = models.ManyToManyField(Product, blank=True)
+
+    def __str__(self):
+        cart = Cart.objects.get(user=self.user)
+        return f'{self.user.username}\'s shopping cart with {cart.products.all().count()} items'
+
+
+class Order(models.Model):
+    first_name = models.CharField(max_length=30, blank=False)
+    last_name = models.CharField(max_length=30, blank=False)
+    email = models.EmailField(blank=False)
+    telephone = models.CharField(max_length=13, blank=False, default='+359')
+    address = models.CharField(max_length=50, blank=False)
+    user = models.ForeignKey(User, null=False, blank=True, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'Order id {self.id}, made by {self.user.username} on {self.date}'

@@ -1,24 +1,23 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 {% block product_styles %}
-    <link rel="stylesheet" href="{% static 'css/cart.css' %}"> {% endblock %}
+    <link rel="stylesheet" href="{% static 'css/search.css' %}"> {% endblock %}
 {% block content %}
     <h1>Results containing {{ query }}</h1>
 
     <div class="cart-container">
         {% for match in matched %}
-            <div class="cart-item">
-
-                <img src="{{ match.image_url }}">
-                <p class="div-item">
-                    <a href="{% url 'product' match.pk %}">
-                        {{ match.product_name }}
-                    </a>
-                </p>
-                <p class="div-item">{{ match.price }}</p>
-                {% include 'partials/add_to_cart.html' %}
-
+            <div class="card" style="width: 100%; margin-bottom: 1.2rem">
+                <img src="{{ match.image_url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ match.product_name }}</h5>
+                    <h6 class="card-title">{{ match.price }}lv</h6>
+                    <p class="card-text">{{ match.description }}.</p>
+                </div>
+            {% include 'partials/add_to_cart.html' %}
             </div>
+
         {% endfor %}
+            </div>
 
 {% endblock %}

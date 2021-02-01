@@ -4,14 +4,18 @@
     {% block product_styles %} <link rel="stylesheet" href="{% static 'css/products.css' %}"> {% endblock %}
 
 {% block content %}
+    {% if product.owner_id != user.pk %}
+        <h1 style="text-align: center; color:red;">Access denied</h1>
+    {% else %}
 <h1>Add new product</h1>
     <div class="create-product">
     <form method="post" >
         {% csrf_token %}
     {{ form|crispy }}
         <div class="add-item">
-        <button type="submit" class="btn btn-success">Edit item</button>
+        <button type="submit" name="profile" value="{{ user.pk }}" class="btn btn-success">Edit item</button>
             </div>
     </form>
     </div>
+    {% endif %}
 {% endblock %}

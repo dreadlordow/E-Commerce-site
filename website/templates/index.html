@@ -5,7 +5,7 @@
 {% block content %}
         {% if user.is_authenticated %}
         <div class="new-item ">
-            <a href="{% url 'create' user.pk %}" class="btn btn-primary add">Add new item</a>
+            <a href="{% url 'create' user.pk %}" class="btn btn-primary add">Add new product</a>
 
         </div>
     {% endif %}

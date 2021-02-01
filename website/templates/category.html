@@ -5,25 +5,23 @@
 {% endblock %}
 {% block content %}
     {% if products %}
-    <h3 class="heading display-3"> {{ len }} products found in category '{{ category }}'</h3>
-    <div class="parent">
-        {% for product in products %}
-            <div class="child">
-                <div class="img-name-price">
-                    <img src="{{ product.image_url }}">
-                    <h5>{{ product.product_name }}</h5>
-                    <h5>{{ product.price }}</h5>
-                </div>
-                <div class="">
-                    <p class="description">{{ product.description }}</p>
-                    {% include 'partials/add_to_cart.html' %}
+        <h3 class="heading display-3"> {{ len }} products found in category '{{ category }}'</h3>
+        <div class="parent">
+            {% for product in products %}
+                <div class="card child">
+                    <img src="{{ product.image_url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.product_name }}</h5>
+                        <h6 class="card-title">{{ product.price }}lv</h6>
+                        <p class="card-text">{{ product.description }}.</p>
+                        {% include 'partials/add_to_cart.html' %}
 
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
-    </div>
+            {% endfor %}
+        </div>
     {% else %}
-    <h1 class="heading display-1">No products found</h1>
+        <h1 class="heading display-1">No products found</h1>
     {% endif %}
 
 {% endblock %}

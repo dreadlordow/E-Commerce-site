@@ -10,7 +10,12 @@ def edit(request, pk):
     categories = category_fn()
     if request.method == 'GET':
         form = ProductForm(instance=product)
-        return render(request, 'edit_product.html', {'form': form, 'categories': categories})
+        context = {
+            'form': form,
+            'categories': categories,
+            'product': product,
+        }
+        return render(request, 'edit_product.html', )
 
     else:
         form = ProductForm(request.POST, instance=product)

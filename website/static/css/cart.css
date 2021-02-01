@@ -2,15 +2,8 @@
     padding-left: 10px;
     display: flex;
     flex-direction: column;
-}
-
-.cart-item{
-    padding: 10px;
-    max-height: 30%;
-    max-width: 50%;
-    border-radius: 1px ;
-    border: 1px solid black;
-
+    width: 50%;
+    transform: translateY(-80px);
 }
 
 .name{
@@ -20,11 +13,7 @@
     padding-top: 10px;
     padding-left: 10px;
 }
-img{
-    height: 200px;
-    max-width: 40%;
 
-}
 
 .denied{
     color: red ;
@@ -33,12 +22,7 @@ img{
 }
 
 .total{
-    width: 33%;
-    position:relative;
-    margin-left: 60%;
-    margin-right: 10%;
-    padding-right: 10px;
-    padding-top: 10px;
+    transform: translateX(60%);
 }
 
 .empty-cart{

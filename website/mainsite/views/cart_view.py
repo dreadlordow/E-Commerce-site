@@ -1,7 +1,5 @@
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
-
-from mainsite.forms import CartForm
 from mainsite.models import Cart, Product
 from mainsite.views.categoryfn import category_fn
 
@@ -18,7 +16,6 @@ def add_to_cart(request, pk):
 
     else:
         products = my_cart.products.all()
-        print(len(products))
         total = sum(products.values_list('price', flat=True))
         context= {
             'products': products,
@@ -49,3 +46,5 @@ def remove_from_cart(request, pk):
 
         }
         return render(request, 'cart.html', context)
+
+

@@ -19,7 +19,7 @@ def create_product(request, pk):
         form = ProductForm(request.POST)
 
         if form.is_valid():
-            new = form.save(commit=False)
+            new = form.save(commit=False) # Setting foreign key
             new.owner = owner
             new.save()
             return redirect('index')
