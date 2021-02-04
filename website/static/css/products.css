@@ -3,9 +3,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     width: 10%;
-    justify-content: space-between;
-    row-gap: 15px;
-    column-gap: 25px;
+
 }
 
 .item {
@@ -13,6 +11,9 @@
     border-radius: 1px;
     border: solid 1px #eeeeee;
     width: 40%;
+    margin-left: 1.2rem;
+    margin-right: 1rem;
+    margin-bottom: 1.2rem;
 
 }
 
@@ -62,6 +63,7 @@ hr{
 .profile-head{
     margin-right: 10%;
     text-align: center;
+    margin-top: 5%;
 }
 
 .div-item {
@@ -81,4 +83,69 @@ hr{
     size: portrait;
     margin-left: 1rem;
     margin-bottom: 1rem;
+}
+
+.sort-by{
+    float: right;
+    transform: translateY(-45px);
+    margin-right: 1.2rem;
+}
+
+.sort-by button{
+    color: blue;
+    background-color: aqua;
+    border: 0.5px solid aqua;
+    border-radius: 5px;
+}
+
+.main{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.left{
+    width: 35%;
+    height: 40%;
+}
+
+.pfp{
+    opacity: 1;
+    display: block;
+    max-width: 100%;
+    transition: .5s ease;
+    backface-visibility: hidden;
+    margin-top: 1rem;
+}
+
+.middle {
+  opacity: 0;transition: .5s ease;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+    width: 20%;
+    transform: translate(90px, -150px);
+
+}
+
+.middle a{
+    text-decoration: none;
+}
+
+.img-container:hover .pfp {
+    opacity: 0.3;
+}
+
+.img-container:hover .middle {
+    opacity: 1;
+}
+
+.avatar-text{
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
+    padding: 8px 16px;
+    width: 20%;
 }

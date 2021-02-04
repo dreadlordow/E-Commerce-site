@@ -3,12 +3,18 @@
 {% block product_styles %}
     <link rel="stylesheet" href="{% static 'css/products.css' %}"> {% endblock %}
 {% block content %}
-        {% if user.is_authenticated %}
+    <form metho="get">
+        <input type="hidden" name="next" value="{{ request.GET.next }}">
         <div class="new-item ">
-            <a href="{% url 'create' user.pk %}" class="btn btn-primary add">Add new product</a>
-
+            <a href="{% url 'create' %}" class="btn btn-primary add">Add new product</a>
         </div>
-    {% endif %}
+</form>
+        <div class="sort-by">
+            <form method="get" action="{% url 'index' %}">
+                {{ sort_form }}
+                <button>Filter</button>
+            </form>
+        </div>
 
 {% include 'partials/products.html' %}
 

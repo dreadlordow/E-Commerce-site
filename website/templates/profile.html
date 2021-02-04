@@ -1,15 +1,36 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 
-{% block product_styles %} <link rel="stylesheet" href="{% static 'css/products.css' %}"> {% endblock %}
+{% block product_styles %}
+    <link rel="stylesheet" href="{% static 'css/products.css' %}"> {% endblock %}
 
 {% block content %}
-    <div>
-    <h1 class="display-1 profile-head">
-        {{ owner.username }} 's products
-    </h1>
+    <div class="main">
+        <div class="left">
+            {% if profile_picture_exists != None %}
+                <div class="img-container">
+                    <img class="pfp" src="{{ profile_picture_exists.profile_picture.url }}" alt="Profile picture"
+                         style="border-radius: 50%;" height="280" width="280">
+                    {% if user.id == owner.id %}
+                        <div class="middle">
+                            <div class="avatar-text">
+                                <a href="{% url 'change pfp' owner.username owner.id %}">Change picture</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            {% else %}
+                <p>Upload avatar</p>
+            {% endif %}
+        </div>
+        <div class="right">
+            <h3 class="display-1 profile-head">
+                {{ owner.username }}
+            </h3>
+                <h4>{{ owner.product_set.count }} listed products</h4>
+        </div>
+    </div>
     <hr>
-</div>
-{% include 'partials/products.html' %}
+    {% include 'partials/products.html' %}
 
 {% endblock %}

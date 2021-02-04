@@ -2,9 +2,13 @@
     {% for product in products %}
 
             <div class="card item" style="width: 30%;">
-                <img src="{{ product.image_url }}" class="card-img-top" alt="...">
+            <a href="{% url 'product' product.pk product.product_name %}">
+                <img src="{{ product.image_url }}" class="card-img-top" alt="{{product.product_name}}" style="height: 300px">
+            </a>
                 <div class="card-body">
-                    <h5 class="card-title">{{ product.product_name }}</h5>
+                    <h5 class="card-title"><a style="color:black;"
+                                              href="{% url 'product' product.pk product.product_name  %}">{{ product.product_name }}
+                    </a></h5>
                     <h6 class="card-title">{{ product.price }}lv</h6>
                     <p class="card-text">{{ product.description }}.</p>
 
@@ -16,11 +20,10 @@
                     <button class="btn btn-danger div-item delete-btn" name="delete" value="{{ product.pk }}">Delete
                         product
                     </button>
-
                 </form>
             {% endif %}
 
-
         </div>
+
     {% endfor %}
 </div>

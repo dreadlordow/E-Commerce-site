@@ -1,0 +1,14 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% block product_styles %}
+    <link rel="stylesheet" href="{% static 'css/admin_page.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="parent">
+        <h3 style="text-align: center;">{{ users.count }} registered users</h3>
+        <br style="border: 1px solid black">
+        {% for user in users %}
+            <p class="users">{{ user.username }}</p>
+        {% endfor %}
+    </div>
+{% endblock %}

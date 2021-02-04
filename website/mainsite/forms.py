@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.forms import HiddenInput
 
-from mainsite.models import Product, Cart, Order
+from mainsite.models import Product, Cart, Order, Comment
 
 
 class ProductForm(forms.ModelForm):
@@ -24,3 +24,21 @@ class OrderForm(forms.ModelForm):
         model = Order
         fields = ('first_name', 'last_name', 'email', 'telephone', 'address')
         exclude=('user', 'date')
+
+
+class SortForm(forms.Form):
+    choices = (
+        ('date_added', 'Date Ascending'),
+        ('-date_added', 'Date Descending'),
+        ('price', 'Price Ascending'),
+        ('-price', 'Price Descending'),
+        ('product_name', 'Name A-Z'),
+        ('-product_name', 'Name Z-A'),
+    )
+    order = forms.ChoiceField(choices=choices)
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        exclude = ('user', 'product')

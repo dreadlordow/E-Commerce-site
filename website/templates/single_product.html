@@ -1,0 +1,59 @@
+{% extends 'shared/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="d-flex">
+        <div class="d-inline p-3" style="width:60%">
+            <img src="{{ product.image_url }}" class="w-30 rounded mx-auto d-block" style="max-width: 70%">
+        </div>
+        <div class="d-inline p-2 w-30">
+            <div class="d-flex">
+                <h5><u>Product:</u> {{ product.product_name }}</h5>
+            </div>
+            <div class="d-flex">
+                <h5><u>Price:</u> {{ product.price }}</h5>
+
+            </div>
+            <p class="mt-2">Description: {{ product.description }}</p>
+            <div>
+                {% include 'partials/add_to_cart.html' %}
+            </div>
+            <br>
+            {% if user.is_staff or user.pk == product.owner_id %}
+                <form method="get" action="{% url 'edit_item' product.pk %}">
+                    {% csrf_token %}
+                    <button class="btn btn-primary div-item">Edit Product</button>
+                </form>
+
+                <form method="get" action="{% url 'delete item' product.pk %}">
+                    {% csrf_token %}
+                    <button class="btn btn-danger div-item delete-btn"
+                            name="delete" value="{{ user.pk }}" style="margin-top:1rem;">Delete
+                        product
+                    </button>
+                </form>
+
+            {% endif %}
+            <a href=""><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+        </div>
+        <div class="d-inline w-30" >
+            <h3>Listed by</h3>
+            <h4>
+            <a href="{% url 'profile' owner.username %}" style="text-decoration: none">{{ owner.username }}</a>
+                </h4>
+        </div>
+    </div>
+    <div class="d-block" style="background-color: #f1e3e3; padding:2%">
+        {% for comment in product_comments %}
+            <p>{{ comment.user }}:</p>
+            <e>{{ comment.text }}</e>
+            <hr>
+        {% endfor %}
+    {% if user.is_authenticated %}
+        <form method="post" action="{% url 'product' product.pk product.product_name %}">
+            {% csrf_token %}
+            {{ comment_form }}
+            <button>Submit</button>
+            </form>
+    {% endif %}
+    </div>
+{% endblock %}

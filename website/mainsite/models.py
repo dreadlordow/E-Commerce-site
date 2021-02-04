@@ -18,6 +18,7 @@ class Product(models.Model):
     price = models.FloatField(blank=False)
     image_url = models.URLField(blank=False)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    date_added = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f'{self.product_name} - {self.price} - listed by: {self.owner}'
@@ -43,3 +44,14 @@ class Order(models.Model):
 
     def __str__(self):
         return f'Order id {self.id}, made by {self.user.username} on {self.date}'
+
+
+class ProfilePicture(models.Model):
+    profile_picture = models.ImageField(upload_to='profile_pics/', blank=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+
+class Comment(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    text = models.TextField(max_length=250)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
