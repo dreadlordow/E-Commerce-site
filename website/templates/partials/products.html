@@ -1,29 +1,22 @@
-<div class="container">
-    {% for product in products %}
+<div class="card item" style="width: 30%;">
+    <a href="{% url 'product' product.pk product.product_name %}">
+        <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.product_name }}" style="height: 300px">
+    </a>
+    <div class="card-body">
+        <h5 class="card-title"><a style="color:black;"
+                                  href="{% url 'product' product.pk product.product_name %}">{{ product.product_name }}
+        </a></h5>
+        <h6 class="card-title">{{ product.price }}lv</h6>
+        <p class="card-text">{{ product.description }}.</p>
 
-            <div class="card item" style="width: 30%;">
-            <a href="{% url 'product' product.pk product.product_name %}">
-                <img src="{{ product.image_url }}" class="card-img-top" alt="{{product.product_name}}" style="height: 300px">
-            </a>
-                <div class="card-body">
-                    <h5 class="card-title"><a style="color:black;"
-                                              href="{% url 'product' product.pk product.product_name  %}">{{ product.product_name }}
-                    </a></h5>
-                    <h6 class="card-title">{{ product.price }}lv</h6>
-                    <p class="card-text">{{ product.description }}.</p>
+        {% include 'partials/add_to_cart.html' %}
+    </div>
+    {% if product.owner_id == user.id %}
+        <form method="get" action="{% url 'delete item' product.pk %}">
 
-            {% include 'partials/add_to_cart.html' %}
-            </div>
-            {% if product.owner_id == user.id %}
-                <form method="get" action="{% url 'delete item' product.pk %}">
-
-                    <button class="btn btn-danger div-item delete-btn" name="delete" value="{{ product.pk }}">Delete
-                        product
-                    </button>
-                </form>
-            {% endif %}
-
-        </div>
-
-    {% endfor %}
+            <button class="btn btn-danger div-item delete-btn" name="delete" value="{{ product.pk }}">Delete
+                product
+            </button>
+        </form>
+    {% endif %}
 </div>

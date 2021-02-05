@@ -3,10 +3,10 @@
 {% block product_styles %}
     <link rel="stylesheet" href="{% static 'css/search.css' %}"> {% endblock %}
 {% block content %}
-    <h1>Results containing {{ query }}</h1>
+    <h1>{{ object_list.count }} Results containing {{ query }}</h1>
 
     <div class="cart-container">
-        {% for match in matched %}
+        {% for match in object_list %}
             <div class="card" style="width: 100%; margin-bottom: 1.2rem">
                 <img src="{{ match.image_url }}" class="card-img-top" alt="...">
                 <div class="card-body">
