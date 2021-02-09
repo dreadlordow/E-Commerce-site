@@ -5,6 +5,7 @@ from django.shortcuts import render
 from mainsite.models import Product, Order
 
 
+
 @user_passes_test(lambda x: x.is_superuser or x.is_staff)
 def admin_view(request):
     users = User.objects.all()

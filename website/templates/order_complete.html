@@ -5,6 +5,7 @@
 {% endblock %}
 {% block content %}
     <h3 class="order">Your order is complete.</h3>
+    <h4 class="order">Total paid: {{ cost }}lv</h4>
     <div class="container">
         {% for product in products %}
             <div class="item" style="margin-bottom:1rem;">

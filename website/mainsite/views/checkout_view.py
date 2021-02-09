@@ -24,14 +24,18 @@ def order(request, pk):
         user = User.objects.get(pk=pk)
         cart = Cart.objects.get(user=user)
         products = cart.products.all()
-
+        cost = sum(products.values_list('price', flat=True))
+        print(cost)
         context = {
             'products': products,
             'len': len(products),
+            'cost': cost,
         }
         if form.is_valid():
             new = form.save(commit=False) # Setting foreign key
             new.user = user
+            new.total_cost = cost
+            new.total_products = len(products)
             new.save()
             cart.products.clear()
             return render(request, 'order_complete.html', context)

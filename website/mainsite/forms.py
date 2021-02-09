@@ -2,13 +2,13 @@ from django import forms
 from django.contrib.auth.models import User
 from django.forms import HiddenInput
 
-from mainsite.models import Product, Cart, Order, Comment
+from mainsite.models import Product, Cart, Order, Comment, ProductPicture
 
 
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        exclude = ('owner',)
+        exclude = ('owner', 'views')
 
 
 class CartForm(forms.ModelForm):
@@ -23,7 +23,7 @@ class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
         fields = ('first_name', 'last_name', 'email', 'telephone', 'address')
-        exclude=('user', 'date')
+        exclude=('user', 'date', 'total_cost', 'total_products', )
 
 
 class SortForm(forms.Form):
@@ -34,6 +34,8 @@ class SortForm(forms.Form):
         ('-price', 'Price Descending'),
         ('product_name', 'Name A-Z'),
         ('-product_name', 'Name Z-A'),
+        ('-views', 'Most Viewed'),
+        ('views', 'Least Viewed'),
     )
     order = forms.ChoiceField(choices=choices)
 
@@ -42,3 +44,11 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         exclude = ('user', 'product')
+
+
+class ProductPictureForm(forms.ModelForm):
+    image = forms.ImageField(label='Image')
+
+    class Meta:
+        model = ProductPicture
+        fields = ('image', )

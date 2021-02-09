@@ -1,13 +1,17 @@
-.parent{
+.parent {
+    width: 100%;
     float: left;
     margin-left: 1rem;
-    border: 0.5px solid black;
-    border-radius: 0.5px;
-    width: 20%;
-    border-right: 1px solid black;
+    display: flex;
+    flex-direction: row;
 
 }
 
-.users{
+.item {
+    width: 33%;
+    border: 0.5px solid black;
+    border-radius: 0.5px;
+    border-right: 1px solid black;
+    order: 3;
     text-align: center;
 }

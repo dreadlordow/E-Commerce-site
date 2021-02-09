@@ -1,8 +1,7 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 
-{% block product_styles %}
-    <link rel="stylesheet" href="{% static 'css/products.css' %}"> {% endblock %}
+{% block product_styles %} <link rel="stylesheet" href="{% static 'css/products.css' %}"> {% endblock %}
 
 {% block content %}
     <div class="main">
@@ -10,12 +9,18 @@
             {% if profile_picture_exists != None %}
                 <div class="img-container">
                     <img class="pfp" src="{{ profile_picture_exists.profile_picture.url }}" alt="Profile picture"
-                         style="border-radius: 50%;" height="280" width="280">
+                         style="border-radius: 50%; width:25%; height: 25%">
                     {% if user.id == owner.id %}
                         <div class="middle">
                             <div class="avatar-text">
                                 <a href="{% url 'change pfp' owner.username owner.id %}">Change picture</a>
                             </div>
+                        </div>
+                        <div>
+                            <form method="post" action="{% url 'update profile' user.pk %}">
+                                {% csrf_token %}
+                                <button class="btn btn-primary">Edit profile</button>
+                            </form>
                         </div>
                     {% endif %}
                 </div>

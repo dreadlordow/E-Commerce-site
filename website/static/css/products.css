@@ -2,18 +2,16 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 10%;
+    justify-content: space-around;
 
 }
 
 .item {
-    order: 4;
     border-radius: 1px;
     border: solid 1px #eeeeee;
-    width: 40%;
-    margin-left: 1.2rem;
-    margin-right: 1rem;
-    margin-bottom: 1.2rem;
+    width: 35%;
+    transform: scale(0.8);
+    margin-right: -2rem;
 
 }
 

@@ -23,7 +23,6 @@ class SearchView(ListView):
     model = Product
     context_object_name = 'products'
 
-
     def get_context_data(self, **kwargs):
         query = self.request.GET.get('q')
         context = super().get_context_data(**kwargs)
@@ -37,7 +36,8 @@ class SearchView(ListView):
         query = self.request.GET.get('q')
         object_list = None
         if query:
-            object_list = Product.objects.filter(product_name__icontains=query) | Product.objects.filter(description__icontains=query)
+            object_list = Product.objects.filter(
+                product_name__icontains=query) | Product.objects.filter(description__icontains=query)
 
         return object_list
 
