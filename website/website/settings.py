@@ -1,4 +1,4 @@
-
+import django_heroku
 from os.path import join
 from pathlib import Path
 
